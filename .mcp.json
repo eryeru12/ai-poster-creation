@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "ai-poster-creation": {
+      "command": "node",
+      "args": ["packages/mcp-server/dist/index.js"],
+      "env": {
+        "ARK_API_KEY": "${ARK_API_KEY}"
+      }
+    }
+  }
+}

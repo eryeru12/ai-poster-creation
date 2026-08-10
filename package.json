@@ -1,0 +1,24 @@
+{
+  "name": "ai-poster-creation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "packages/mcp-server",
+    "packages/ui"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "dev": "concurrently \"npm run dev -w packages/mcp-server\" \"npm run dev -w packages/ui\"",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "dotenv": "^17.4.2",
+    "playwright-core": "^1.62.1",
+    "sharp": "^0.35.3",
+    "typescript": "^5.7.0"
+  }
+}

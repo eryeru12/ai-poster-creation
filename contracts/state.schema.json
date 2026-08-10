@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Poster Creation Project State",
+  "type": "object",
+  "required": ["schemaVersion", "projectId", "version", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^proj-[a-f0-9-]+$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Auto-incrementing version for conflict detection"
+    },
+    "title": {
+      "type": "string",
+      "default": "Untitled Poster"
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string" },
+        "scene": { "type": "string" },
+        "style": { "type": "string" },
+        "size": {
+          "type": "object",
+          "properties": {
+            "width": { "type": "integer" },
+            "height": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "referenceImage": {
+      "type": "object",
+      "properties": {
+        "imageId": { "type": "string" },
+        "originalName": { "type": "string" },
+        "storedPath": { "type": "string" },
+        "mode": {
+          "type": "string",
+          "enum": ["composition", "color"]
+        }
+      }
+    },
+    "copy": {
+      "type": "object",
+      "properties": {
+        "mainTitle": { "type": "string" },
+        "subTitle": { "type": "string" },
+        "hookLine": { "type": "string" },
+        "activityInfo": { "type": "string" },
+        "footerNote": { "type": "string" }
+      }
+    },
+    "selectedLayout": {
+      "type": "string",
+      "enum": [
+        "top_center",
+        "left_right_split",
+        "left_text_right_image",
+        "minimal_whitespace",
+        "center_stack",
+        "corner_accent",
+        "symmetric_chinese",
+        "floating_layered"
+      ]
+    },
+    "generatedImages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "layoutId": { "type": "string" },
+          "imagePath": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["generating", "succeeded", "failed"]
+          }
+        }
+      }
+    },
+    "textElements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "fieldKey": {
+            "type": "string",
+            "enum": ["mainTitle", "subTitle", "hookLine", "activityInfo", "footerNote"]
+          },
+          "text": { "type": "string" },
+          "x": { "type": "number", "minimum": 0, "maximum": 1 },
+          "y": { "type": "number", "minimum": 0, "maximum": 1 },
+          "width": { "type": "number", "minimum": 0, "maximum": 1 },
+          "height": { "type": "number", "minimum": 0, "maximum": 1 },
+          "fontSize": { "type": "integer" },
+          "fontFamily": { "type": "string" },
+          "fontWeight": { "type": "string" },
+          "color": { "type": "string" },
+          "textAlign": {
+            "type": "string",
+            "enum": ["left", "center", "right"]
+          },
+          "lineHeight": { "type": "number" }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

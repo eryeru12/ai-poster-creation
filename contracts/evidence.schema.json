@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Poster Creation Evidence",
+  "type": "object",
+  "required": ["evidenceId", "target", "checkId", "action", "status", "timestamp"],
+  "properties": {
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^ev-[a-f0-9-]+$"
+    },
+    "target": {
+      "type": "string",
+      "description": "Target host this evidence applies to"
+    },
+    "checkId": {
+      "type": "string",
+      "description": "Check or test identifier"
+    },
+    "relatedIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Related requirement or design IDs"
+    },
+    "action": {
+      "type": "string",
+      "description": "Command or action performed"
+    },
+    "exitCode": {
+      "type": "integer",
+      "description": "Exit code if applicable"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pass", "fail", "skip", "error"]
+    },
+    "artifactPath": {
+      "type": "string",
+      "description": "Path to evidence artifact (screenshot, log, etc.)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "os": { "type": "string" },
+        "browser": { "type": "string" },
+        "hostVersion": { "type": "string" }
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

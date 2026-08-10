@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Poster Creation Result",
+  "type": "object",
+  "required": ["requestId", "basedOnProjectVersion", "status", "createdAt"],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "pattern": "^req-[a-f0-9-]+$"
+    },
+    "basedOnProjectVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Project version when this result was generated"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["succeeded", "partial", "failed", "cancelled"]
+    },
+    "copy": {
+      "type": "object",
+      "properties": {
+        "mainTitle": { "type": "string" },
+        "subTitle": { "type": "string" },
+        "hookLine": { "type": "string" },
+        "activityInfo": { "type": "string" },
+        "footerNote": { "type": "string" }
+      }
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["layoutId", "imagePath", "status"],
+        "properties": {
+          "layoutId": {
+            "type": "string",
+            "enum": [
+              "top_center",
+              "left_right_split",
+              "left_text_right_image",
+              "minimal_whitespace",
+              "center_stack",
+              "corner_accent",
+              "symmetric_chinese",
+              "floating_layered"
+            ]
+          },
+          "imagePath": {
+            "type": "string",
+            "description": "Relative path to generated image"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["succeeded", "failed"]
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if status is failed"
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

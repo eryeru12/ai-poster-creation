@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Poster Creation Request",
+  "type": "object",
+  "required": ["requestId", "operation", "projectId", "projectVersion", "params", "createdAt"],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "pattern": "^req-[a-f0-9-]+$",
+      "description": "Unique request identifier for idempotency"
+    },
+    "operation": {
+      "type": "string",
+      "enum": ["generate_poster"],
+      "description": "The operation to perform"
+    },
+    "projectId": {
+      "type": "string",
+      "pattern": "^proj-[a-f0-9-]+$",
+      "description": "Target project identifier"
+    },
+    "projectVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current project version for conflict detection"
+    },
+    "userIntent": {
+      "type": "string",
+      "description": "User's natural language description of the poster"
+    },
+    "params": {
+      "type": "object",
+      "required": ["theme", "scene", "style", "size"],
+      "properties": {
+        "theme": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Poster theme (e.g., '双十一促销')"
+        },
+        "scene": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Usage scenario (e.g., '电商', '门店')"
+        },
+        "style": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Visual style preference (e.g., '潮流', '简约')"
+        },
+        "size": {
+          "type": "object",
+          "required": ["width", "height"],
+          "properties": {
+            "width": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 10000
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 10000
+            }
+          }
+        },
+        "referenceImage": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Relative path to uploaded reference image"
+            },
+            "mode": {
+              "type": "string",
+              "enum": ["composition", "color"],
+              "description": "Reference mode: composition or color tone"
+            }
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

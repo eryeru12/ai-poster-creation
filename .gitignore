@@ -1,0 +1,9 @@
+.env
+node_modules/
+dist/
+.ai-poster-creation/
+evidence/
+.claude/
+.claude-plugin/
+_start.sh
+Plugin-Check-Report.md

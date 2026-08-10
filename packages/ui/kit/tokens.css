@@ -1,0 +1,55 @@
+:root {
+  /* ── Palette ── */
+  --wp-primary: #FF6B6B;
+  --wp-primary-hover: #FF5252;
+  --wp-primary-gradient: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  --wp-primary-soft: rgba(255, 107, 107, 0.10);
+
+  --wp-bg-warm: #FFF5F0;
+  --wp-bg-canvas: #FAF0E8;
+
+  --wp-surface: #FFFFFF;
+  --wp-surface-glass: rgba(255, 255, 255, 0.85);
+  --wp-surface-hover: #FFF0EB;
+
+  --wp-text-primary: #2D2D2D;
+  --wp-text-secondary: #7B6F6B;
+  --wp-text-tertiary: #B8A9A4;
+  --wp-text-inverse: #FFFFFF;
+
+  --wp-border: #F0E4DB;
+  --wp-border-focus: #FF6B6B;
+
+  /* ── Shadows ── */
+  --wp-shadow-card: 0 2px 16px rgba(255, 107, 107, 0.08);
+  --wp-shadow-elevated: 0 4px 24px rgba(255, 107, 107, 0.12);
+  --wp-shadow-canvas: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  /* ── Radii ── */
+  --wp-radius-sm: 8px;
+  --wp-radius-md: 12px;
+  --wp-radius-lg: 16px;
+  --wp-radius-xl: 20px;
+  --wp-radius-pill: 999px;
+
+  /* ── Semantic ── */
+  --wp-success: #4ECDC4;
+  --wp-warning: #FFD93D;
+  --wp-error: #FF6B6B;
+  --wp-selection: #6CCFFF;
+
+  /* ── Typography ── */
+  --wp-font: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --wp-mono: ui-monospace, "SF Mono", Menlo, "Roboto Mono", Consolas, monospace;
+
+  /* ── Motion ── */
+  --wp-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --wp-fast: 150ms;
+  --wp-base: 250ms;
+  --wp-slow: 400ms;
+
+  /* ── Glass ── */
+  --wp-glass-blur: 12px;
+
+  color-scheme: light;
+}

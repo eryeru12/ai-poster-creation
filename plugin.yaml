@@ -1,0 +1,118 @@
+schemaVersion: 1
+
+plugin:
+  id: "ai-poster-creation"
+  title: "AI海报生成"
+  version: "0.3.0"
+  type: "interactive-agent-plugin"
+  form: "companion-web-app"
+  description: "中小商家和自媒体从业者通过文字描述需求，AI生成8种版式高清商业海报或商品宣传图，海报支持在线编辑和高清导出"
+
+product:
+  primaryUser: "中小商家、自媒体从业者、职场办公人员"
+  coreOutcome: "输入文字需求拿到可商用高清海报，或上传商品图拿到商品宣传图"
+  guiNecessity: "海报预览、8种版式选择、画布编辑、属性调整必须可视化操作"
+  specFile: "./Plugin-Spec.md"
+  designFile: "./Plugin-Design.md"
+  planFile: "./PLUGIN-DEV-PLAN.md"
+
+targets:
+  claude-code:
+    tier: "required"
+    runtimeProfile: "claude-code-browser"
+    uiMode: "browser-or-preview"
+    fallback: "request-queue"
+    requiredStatus: "HOST_VERIFIED"
+
+ui:
+  required: true
+  kit: "warm-playful"
+  framework: "react-typescript-vite"
+  complexityClass: "B"
+  preferredDisplayMode: "workspace"
+  standaloneDevMode: true
+
+agent:
+  runtime: "host"
+  uiCanTriggerAgent: true
+  contextPolicy: "references-first"
+  resultPolicy: "domain-tools-only"
+
+contracts:
+  requestSchema: "./contracts/request.schema.json"
+  resultSchema: "./contracts/result.schema.json"
+  stateSchema: "./contracts/state.schema.json"
+  evidenceSchema: "./contracts/evidence.schema.json"
+
+mcp:
+  transport: "stdio"
+  renderTool: "open_poster_editor"
+  appOnlyTools:
+    - "export_poster"
+    - "project_state"
+    - "promo_project_state"
+    - "list_projects"
+  agentTools:
+    - "generate_copy"
+  longRunningTools:
+    - "generate_poster_images"
+    - "generate_promo_image"
+  resources: []
+
+state:
+  scope: "project"
+  directory: ".ai-poster-creation"
+  schemaVersion: 1
+  reopenRequired: true
+  projectIsolation: true
+
+permissions:
+  filesystem:
+    - scope: "project"
+      access: "read-write"
+      purpose: "存储项目状态、生成资产和导出文件"
+  network:
+    - origin: "https://ark.cn-beijing.volces.com"
+      purpose: "调用火山引擎 ARK 豆包模型生成文案（chat/completions）和海报/宣传图（images/generations）"
+  secrets:
+    - name: "ARK_API_KEY"
+      purpose: "火山引擎 ARK API 鉴权"
+      required: true
+  destructiveActions: []
+
+jobs:
+  enabled: true
+  cancel: true
+  retry: true
+  reconnect: false
+  idempotencyRequired: true
+
+acceptance:
+  required:
+    - "AC-001"
+    - "AC-002"
+    - "AC-003"
+    - "AC-004"
+    - "AC-005"
+    - "AC-006"
+    - "AC-007"
+    - "AC-008"
+    - "AC-009"
+    - "AC-010"
+    - "AC-011"
+  optional: []
+
+nonGoals:
+  - "模板库调用"
+  - "云端同步"
+  - "移动端适配"
+  - "多用户协作"
+  - "计费系统"
+  - "AI抠图等扩展功能"
+  - "宣传图画布编辑"
+
+paths:
+  codeRoot: "./ai-poster-creation"
+  distRoot: "./dist"
+  stateDirectory: ".ai-poster-creation"
+  evidenceIndex: "./evidence/check/evidence.json"
