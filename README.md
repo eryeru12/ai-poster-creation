@@ -1,6 +1,6 @@
 # AI Poster & Promo Creation
 
-基于通义万相（Doubao Seedream）的智能海报和商品宣传图生成工具，作为 Claude Code 插件运行。
+基于 Doubao Seedream 的智能海报和商品宣传图生成工具，作为 Claude Code 插件运行。
 
 ## 功能
 
